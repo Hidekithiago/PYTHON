@@ -1,0 +1,738 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://services.soc.age.com/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="LicencaMedicaWsService" targetNamespace="http://services.soc.age.com/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://services.soc.age.com/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://services.soc.age.com/">
+            <xs:element name="alterarLicencaMedica" type="tns:alterarLicencaMedica"/>
+            <xs:element name="alterarLicencaMedicaResponse" type="tns:alterarLicencaMedicaResponse"/>
+            <xs:element name="consultarLicencaMedica" type="tns:consultarLicencaMedica"/>
+            <xs:element name="consultarLicencaMedicaResponse" type="tns:consultarLicencaMedicaResponse"/>
+            <xs:element name="consultarLoteLicencasMedicas" type="tns:consultarLoteLicencasMedicas"/>
+            <xs:element name="consultarLoteLicencasMedicasResponse" type="tns:consultarLoteLicencasMedicasResponse"/>
+            <xs:element name="consultarMovimentacoesLicencasMedicas" type="tns:consultarMovimentacoesLicencasMedicas"/>
+            <xs:element name="consultarMovimentacoesLicencasMedicasResponse" type="tns:consultarMovimentacoesLicencasMedicasResponse"/>
+            <xs:element name="excluirLicencaMedica" type="tns:excluirLicencaMedica"/>
+            <xs:element name="excluirLicencaMedicaResponse" type="tns:excluirLicencaMedicaResponse"/>
+            <xs:element name="incluirLicencaMedica" type="tns:incluirLicencaMedica"/>
+            <xs:element name="incluirLicencaMedicaResponse" type="tns:incluirLicencaMedicaResponse"/>
+            <xs:complexType name="consultarMovimentacoesLicencasMedicas">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="consultaAfastamentoLote" type="tns:consultaLicencaMedicaWsVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="consultaLicencaMedicaWsVo">
+                <xs:sequence>
+                    <xs:element name="abonado" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="codigoEmpresaFuncionario" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoSequencialFicha" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFicha" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFimAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataInicioAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="identificacaoVo" type="tns:identificacaoUsuarioWsVo"/>
+                    <xs:element minOccurs="0" name="dataInicioAlteracao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFimAlteracao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoAlteracao" type="tns:tipoAlteracaoLicenca"/>
+                    <xs:element minOccurs="0" name="tipoAfastamento" type="tns:tipoAfastamentoHoraDia"/>
+                    <xs:element minOccurs="0" name="versaoEsocialFicha" type="xs:string"/>
+                    <xs:element name="naoExcluirAfastamentoAutomatico" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="identificacaoUsuarioWsVo">
+                <xs:complexContent>
+                    <xs:extension base="tns:identificacaoWsVo">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="codigoUsuario" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="identificacaoWsVo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="chaveAcesso" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoEmpresaPrincipal" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoResponsavel" type="xs:string"/>
+                    <xs:element name="homologacao" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="consultarMovimentacoesLicencasMedicasResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Afastamento" type="tns:licencaMedicaWsRetornoVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="licencaMedicaWsRetornoVo">
+                <xs:sequence>
+                    <xs:element name="abonado" type="xs:boolean"/>
+                    <xs:element name="acidenteTrajeto" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="avisos" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cidContestado" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="cids" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoEmpresaFuncionario" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoFuncionario" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoMotivoAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoPessoaSolicitante" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoSequencialLicenca" type="xs:string"/>
+                    <xs:element minOccurs="0" name="conselhoClasse" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cpfFuncionario" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFicha" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFimAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataInicioAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataSolicitacao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descricaoMotivo" type="xs:string"/>
+                    <xs:element minOccurs="0" name="erros" type="xs:string"/>
+                    <xs:element minOccurs="0" name="especialidade1" type="xs:string"/>
+                    <xs:element minOccurs="0" name="especialidade2" type="xs:string"/>
+                    <xs:element name="imprimirCid" type="xs:boolean"/>
+                    <xs:element name="imprimirMotivo" type="xs:boolean"/>
+                    <xs:element name="imprimirSolicitante" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="matriculaFuncionario" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nomeLocalAtendimento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nomeSolicitante" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pericia" type="xs:string"/>
+                    <xs:element minOccurs="0" name="restricaoRetorno" type="xs:string"/>
+                    <xs:element minOccurs="0" name="situacaoAtual" type="tns:situacaoFuncionario"/>
+                    <xs:element minOccurs="0" name="tipoCid" type="tns:tipoCid"/>
+                    <xs:element minOccurs="0" name="tipoDeAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoLocalAtendimento" type="tns:tipoLocalAtendimento"/>
+                    <xs:element minOccurs="0" name="ufConselhoClasse" type="xs:string"/>
+                    <xs:element name="codigoMedico" type="xs:int"/>
+                    <xs:element minOccurs="0" name="codigoSocTipoDeAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoSocMotivoAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoAlteracao" type="tns:tipoAlteracaoLicenca"/>
+                    <xs:element minOccurs="0" name="tipoAcidenteTransito" type="tns:tipoAcidenteTransito"/>
+                    <xs:element minOccurs="0" name="numeroOrdemConselho" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ufOrdemConselho" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nomeConselho" type="xs:string"/>
+                    <xs:element minOccurs="0" name="motivoLicencaTabela18" type="tns:motivoLicencaTabela18"/>
+                    <xs:element minOccurs="0" name="orgaoPublico" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="cnpjCessionarioSindicato" type="xs:string"/>
+                    <xs:element minOccurs="0" name="onusExercicioMandatoSindical" type="tns:onusExercicioMandatoSindical"/>
+                    <xs:element minOccurs="0" name="onusCessaoTrabalhador" type="tns:onusCessaoTrabalhador"/>
+                    <xs:element minOccurs="0" name="motivoAlteracaoMotivoLicenca" type="tns:motivoAlteracaoMotivoLicenca"/>
+                    <xs:element minOccurs="0" name="alteracaoMotivoLicencaComEfeitoRetroativo" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="dataUltimaAlteracaoMotivoLicenca" type="xs:string"/>
+                    <xs:element name="afastamentoHoras" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="horaInicioAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="horaFimAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="duracaoHorasAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="siglaConselhoSolicitante" type="xs:string"/>
+                    <xs:element minOccurs="0" name="siglaConselhoClasse" type="xs:string"/>
+                    <xs:element minOccurs="0" name="versaoEsocialFicha" type="xs:string"/>
+                    <xs:element minOccurs="0" name="origemAlteracao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nrProcessoJudicial" type="xs:string"/>
+                    <xs:element name="existeLicencaMesmoMotivo60Dias" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="codigoAgrupamentoAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoProcesso" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cidESocial" type="xs:string"/>
+                    <xs:element minOccurs="0" name="infoAfastamento" type="tns:afastamentoWsVo"/>
+                    <xs:element minOccurs="0" name="dataAlteracao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="sequencialAlteracao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="identificacaoRemuneracaoCargo" type="tns:identificacaoRemuneracaoCargo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="afastamentoWsVo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="dataFimPeriodo" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataInicioInss" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataInicioPeriodo" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataRetornoAfastamento" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="licencaEsocialTabela18Vo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codigoItemTabela18" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoCid" type="xs:string"/>
+                    <xs:element minOccurs="0" name="versaoEsocialFicha" type="xs:string"/>
+                    <xs:element minOccurs="0" name="versaoEsocialParametro" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="alterarLicencaMedica">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="afastamento" type="tns:licencaMedicaWsVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="licencaMedicaWsVo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="abonado" type="xs:boolean"/>
+                    <xs:element name="acidenteTrajeto" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="cidContestado" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="cids" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoEmpresaFuncionario" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoFuncionario" type="xs:string"/>
+                    <xs:element name="codigoMedico" type="xs:int"/>
+                    <xs:element minOccurs="0" name="codigoMotivoAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoPessoaSolicitante" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoSequencialFicha" type="xs:string"/>
+                    <xs:element name="confirmaInclusao" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="conselhoClasse" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFicha" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFimAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataInicioAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataSolicitacao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descricaoMotivo" type="xs:string"/>
+                    <xs:element minOccurs="0" name="especialidade1" type="xs:string"/>
+                    <xs:element minOccurs="0" name="especialidade2" type="xs:string"/>
+                    <xs:element minOccurs="0" name="horaFimAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="horaInicioAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="identificacaoVo" type="tns:identificacaoUsuarioWsVo"/>
+                    <xs:element name="imprimirCid" type="xs:boolean"/>
+                    <xs:element name="imprimirMotivo" type="xs:boolean"/>
+                    <xs:element name="imprimirSolicitante" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="matriculaFuncionario" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nomeLocalAtendimento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nomeSolicitante" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pericia" type="xs:string"/>
+                    <xs:element minOccurs="0" name="restricaoRetorno" type="xs:string"/>
+                    <xs:element minOccurs="0" name="situacaoAtual" type="tns:situacaoFuncionario"/>
+                    <xs:element minOccurs="0" name="tipoCid" type="tns:tipoCid"/>
+                    <xs:element minOccurs="0" name="tipoDeAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoLocalAtendimento" type="tns:tipoLocalAtendimento"/>
+                    <xs:element minOccurs="0" name="ufConselhoClasse" type="xs:string"/>
+                    <xs:element minOccurs="0" name="buscaTipoLicenca" type="tns:buscaTipoLicenca"/>
+                    <xs:element minOccurs="0" name="buscaMotivoLicenca" type="tns:buscaMotivoLicenca"/>
+                    <xs:element minOccurs="0" name="tipoAcidenteTransito" type="tns:tipoAcidenteTransito"/>
+                    <xs:element minOccurs="0" name="numeroOrdemConselho" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ufOrdemConselho" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nomeConselho" type="xs:string"/>
+                    <xs:element minOccurs="0" name="motivoLicencaTabela18" type="tns:motivoLicencaTabela18"/>
+                    <xs:element minOccurs="0" name="orgaoPublico" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="cnpjCessionarioSindicato" type="xs:string"/>
+                    <xs:element minOccurs="0" name="onusExercicioMandatoSindical" type="tns:onusExercicioMandatoSindical"/>
+                    <xs:element minOccurs="0" name="onusCessaoTrabalhador" type="tns:onusCessaoTrabalhador"/>
+                    <xs:element minOccurs="0" name="motivoAlteracaoMotivoLicenca" type="tns:motivoAlteracaoMotivoLicenca"/>
+                    <xs:element minOccurs="0" name="alteracaoMotivoLicencaComEfeitoRetroativo" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="dataUltimaAlteracaoMotivoLicenca" type="xs:string"/>
+                    <xs:element name="afastamentoHoras" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="siglaConselhoSolicitante" type="xs:string"/>
+                    <xs:element minOccurs="0" name="versaoEsocialFicha" type="xs:string"/>
+                    <xs:element minOccurs="0" name="origemAlteracao" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nrProcessoJudicial" type="xs:string"/>
+                    <xs:element minOccurs="0" name="licencaMesmoMotivo60Dias" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoAgrupamentoAfastamento" type="xs:string"/>
+                    <xs:element minOccurs="0" name="campoString01" type="xs:string"/>
+                    <xs:element minOccurs="0" name="campoString02" type="xs:string"/>
+                    <xs:element minOccurs="0" name="campoString03" type="xs:string"/>
+                    <xs:element minOccurs="0" name="campoString04" type="xs:string"/>
+                    <xs:element minOccurs="0" name="campoString05" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoProcesso" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cidESocial" type="xs:string"/>
+                    <xs:element minOccurs="0" name="infoAfastamento" type="tns:afastamentoWsVo"/>
+                    <xs:element minOccurs="0" name="alteracaoGeraEventoEsocial" type="tns:tipoDataAlteracao"/>
+                    <xs:element minOccurs="0" name="identificacaoRemuneracaoCargo" type="tns:identificacaoRemuneracaoCargo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="alterarLicencaMedicaResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="AfastamentoRetorno" type="tns:licencaMedicaWsRetornoVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="consultarLoteLicencasMedicas">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="consultaAfastamento" type="tns:consultaLicencaMedicaWsVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="consultarLoteLicencasMedicasResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Afastamento" type="tns:licencaMedicaWsRetornoVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="consultarLicencaMedica">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="consultaAfastamento" type="tns:consultaLicencaMedicaWsVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="consultarLicencaMedicaResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="AfastamentoRetorno" type="tns:licencaMedicaWsRetornoVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="excluirLicencaMedica">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="consultaAfastamento" type="tns:consultaLicencaMedicaWsVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="excluirLicencaMedicaResponse">
+                <xs:sequence>
+                    <xs:element name="AfastamentoRetorno" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="incluirLicencaMedica">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="afastamento" type="tns:licencaMedicaWsVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="incluirLicencaMedicaResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="AfastamentoRetorno" type="tns:licencaMedicaWsRetornoVo"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="tipoAlteracaoLicenca">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="TODOS"/>
+                    <xs:enumeration value="INCLUSAO"/>
+                    <xs:enumeration value="ALTERACAO"/>
+                    <xs:enumeration value="EXCLUSAO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="tipoAfastamentoHoraDia">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="TODOS"/>
+                    <xs:enumeration value="HORAS"/>
+                    <xs:enumeration value="DIAS"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="situacaoFuncionario">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ATIVO"/>
+                    <xs:enumeration value="AFASTADO"/>
+                    <xs:enumeration value="PENDENTE"/>
+                    <xs:enumeration value="FERIAS"/>
+                    <xs:enumeration value="INATIVO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="tipoCid">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="DOENCA_COMUNITARIA"/>
+                    <xs:enumeration value="DOENCA_OCUPACIONAL"/>
+                    <xs:enumeration value="DOENCA_RELACIONADOA_AO_TRABALHO"/>
+                    <xs:enumeration value="OUTROS"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="tipoLocalAtendimento">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="POSTO_SAUDE"/>
+                    <xs:enumeration value="CENTRO_SAUDE_UNIDADE_BASICA_SAUDE"/>
+                    <xs:enumeration value="POLICLINICA"/>
+                    <xs:enumeration value="HOSPITAL"/>
+                    <xs:enumeration value="HOSPITAL_ESPECIALIZADO"/>
+                    <xs:enumeration value="UNIDADE_MISTA"/>
+                    <xs:enumeration value="PRONTO_SOCORRO_GERAL"/>
+                    <xs:enumeration value="PRONTO_SOCORRO_ESPECIALIZADO"/>
+                    <xs:enumeration value="CONSULTORIO_ISOLADO"/>
+                    <xs:enumeration value="UNIDADE_MOVEL_FLUVIAL"/>
+                    <xs:enumeration value="CLINICA_ESPECIALIZADA_AMB_ESPECIALIZADO"/>
+                    <xs:enumeration value="UNIDADE_SERVICO_APOIO_DIAGNOSE_TERAPIA"/>
+                    <xs:enumeration value="UNIDADE_MOVEL_TERRESTRE"/>
+                    <xs:enumeration value="UNIDADE_MOVEL_NIVEL_PRE_HOSPITALAR_NA_AREA_URGENCIA_EMERGENCIA"/>
+                    <xs:enumeration value="FARMACIA"/>
+                    <xs:enumeration value="UNIDADE_VIGILANCIA_SAUDE"/>
+                    <xs:enumeration value="COOPERATIVA"/>
+                    <xs:enumeration value="CENTRO_PARTO_NORMAL_ISOLADO"/>
+                    <xs:enumeration value="HOSPITAL_DIA_ISOLADO"/>
+                    <xs:enumeration value="CENTRAL_REGULACAO_SERVICOS_SAUDE"/>
+                    <xs:enumeration value="LABORATORIO"/>
+                    <xs:enumeration value="SECRETARIA_SAUDE"/>
+                    <xs:enumeration value="CLINICA"/>
+                    <xs:enumeration value="UPA_UBS_AMA"/>
+                    <xs:enumeration value="NAO_IDENTIFICADO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="tipoAcidenteTransito">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ATROPELAMENTO"/>
+                    <xs:enumeration value="COLISAO"/>
+                    <xs:enumeration value="OUTROS"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="motivoLicencaTabela18">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ACIDENTE_TRABALHO"/>
+                    <xs:enumeration value="NOVO_AFASTAMENTO_MESMO_ACIDENTE"/>
+                    <xs:enumeration value="DOENCA"/>
+                    <xs:enumeration value="NOVO_AFASTAMENTO_MESMA_DOENCA"/>
+                    <xs:enumeration value="LICENCA_PATERNIDADE"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_APARTIR_120DIAS"/>
+                    <xs:enumeration value="ABORTO"/>
+                    <xs:enumeration value="PRESTACAO_SERVICO_MILITAR"/>
+                    <xs:enumeration value="EXERCICIO_MANDATO_SINDICAL"/>
+                    <xs:enumeration value="LICENCA_SEM_VENCIMENTOS"/>
+                    <xs:enumeration value="EXERCICIO_MANDATO_ELEITORAL"/>
+                    <xs:enumeration value="PARTICIPACAO_CURSO"/>
+                    <xs:enumeration value="APOSENTADORIA_INVALIDEZ"/>
+                    <xs:enumeration value="FERIAS"/>
+                    <xs:enumeration value="CESSAO_TRABALHADOR"/>
+                    <xs:enumeration value="CARCERE"/>
+                    <xs:enumeration value="OUTROS"/>
+                    <xs:enumeration value="ACIDENTE_TRABALHO_VERSAO2"/>
+                    <xs:enumeration value="NOVO_AFASTAMENTO_MESMO_ACIDENTE_VERSAO2"/>
+                    <xs:enumeration value="DOENCA_VERSAO2"/>
+                    <xs:enumeration value="NOVO_AFASTAMENTO_MESMA_DOENCA_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_SR_VERSAO2"/>
+                    <xs:enumeration value="APOSENTADORIA_INVALIDEZ_VERSAO2"/>
+                    <xs:enumeration value="ACOMPANHAMENTO_MEMBRO_FAMILIA_VERSAO2"/>
+                    <xs:enumeration value="AFASTAMENTO_ATIVIDADE_CONS_CURA_VERSAO2"/>
+                    <xs:enumeration value="PRESTACAO_SERVICO_MILITAR_VERSAO2_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_CR_VERSAO2"/>
+                    <xs:enumeration value="CARCERE_VERSAO2"/>
+                    <xs:enumeration value="CARGO_ELETIVO_VERSAO2"/>
+                    <xs:enumeration value="CARGO_ELETIVO_SERVIDOR_PUBLICO_VERSAO2"/>
+                    <xs:enumeration value="CESSAO_VERSAO2"/>
+                    <xs:enumeration value="FERIAS_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_RENUMERADA_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_120_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_180_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ABORTO_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ADOCAO_VERSAO2"/>
+                    <xs:enumeration value="LICENCA_NAO_RENUMERADA_VERSAO2"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SR_VERSAO2"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SC_VERSAO2"/>
+                    <xs:enumeration value="MANDATO_SINDICAL_VERSAO2"/>
+                    <xs:enumeration value="MULHER_VITIMA_VIOLENCIA_VERSAO2"/>
+                    <xs:enumeration value="PARTICIPACAO_EMPREGO_CONS_NACIONAL_VERSAO2"/>
+                    <xs:enumeration value="QUALIFICACAO_VERSAO2"/>
+                    <xs:enumeration value="REPRESENTANTE_SINDICAL_VERSAO2"/>
+                    <xs:enumeration value="SERVICO_MILITAR_VERSAO2"/>
+                    <xs:enumeration value="SUSPENSAO_DISCIPLINAR_VERSAO2"/>
+                    <xs:enumeration value="SERVIDOR_PUBLICO_VERSAO2"/>
+                    <xs:enumeration value="OUTROS_VERSAO2"/>
+                    <xs:enumeration value="ACIDENTE_TRABALHO_VERSAO2_2"/>
+                    <xs:enumeration value="DOENCA_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_SR_VERSAO2_2"/>
+                    <xs:enumeration value="APOSENTADORIA_INVALIDEZ_VERSAO2_2"/>
+                    <xs:enumeration value="ACOMPANHAMENTO_MEMBRO_FAMILIA_VERSAO2_2"/>
+                    <xs:enumeration value="AFASTAMENTO_ATIVIDADE_CONS_CURA_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_CR_VERSAO2_2"/>
+                    <xs:enumeration value="CARCERE_VERSAO2_2"/>
+                    <xs:enumeration value="CARGO_ELETIVO_VERSAO2_2"/>
+                    <xs:enumeration value="CARGO_ELETIVO_SERVIDOR_PUBLICO_VERSAO2_2"/>
+                    <xs:enumeration value="CESSAO_VERSAO2_2"/>
+                    <xs:enumeration value="FERIAS_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_RENUMERADA_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_120_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_180_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ABORTO_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ADOCAO_VERSAO2_2"/>
+                    <xs:enumeration value="LICENCA_NAO_RENUMERADA_VERSAO2_2"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SR_VERSAO2_2"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SC_VERSAO2_2"/>
+                    <xs:enumeration value="MANDATO_SINDICAL_VERSAO2_2"/>
+                    <xs:enumeration value="MULHER_VITIMA_VIOLENCIA_VERSAO2_2"/>
+                    <xs:enumeration value="PARTICIPACAO_EMPREGO_CONS_NACIONAL_VERSAO2_2"/>
+                    <xs:enumeration value="QUALIFICACAO_VERSAO2_2"/>
+                    <xs:enumeration value="REPRESENTANTE_SINDICAL_VERSAO2_2"/>
+                    <xs:enumeration value="SERVICO_MILITAR_VERSAO2_2"/>
+                    <xs:enumeration value="SUSPENSAO_DISCIPLINAR_VERSAO2_2"/>
+                    <xs:enumeration value="SERVIDOR_PUBLICO_VERSAO2_2"/>
+                    <xs:enumeration value="TRANSFERENCIA_PRESTACAO_SERVICO_VERSAO2_2"/>
+                    <xs:enumeration value="OUTROS_VERSAO2_2"/>
+                    <xs:enumeration value="ACIDENTE_TRABALHO_VERSAO2_2_2"/>
+                    <xs:enumeration value="DOENCA_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_SR_VERSAO2_2_2"/>
+                    <xs:enumeration value="APOSENTADORIA_INVALIDEZ_VERSAO2_2_2"/>
+                    <xs:enumeration value="ACOMPANHAMENTO_MEMBRO_FAMILIA_VERSAO2_2_2"/>
+                    <xs:enumeration value="AFASTAMENTO_ATIVIDADE_CONS_CURA_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_CR_VERSAO2_2_2"/>
+                    <xs:enumeration value="CARCERE_VERSAO2_2_2"/>
+                    <xs:enumeration value="CARGO_ELETIVO_VERSAO2_2_2"/>
+                    <xs:enumeration value="CARGO_ELETIVO_SERVIDOR_PUBLICO_VERSAO2_2_2"/>
+                    <xs:enumeration value="CESSAO_VERSAO2_2_2"/>
+                    <xs:enumeration value="FERIAS_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_RENUMERADA_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_120_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_180_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ABORTO_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ADOCAO_VERSAO2_2_2"/>
+                    <xs:enumeration value="LICENCA_NAO_RENUMERADA_VERSAO2_2_2"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SR_VERSAO2_2_2"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SC_VERSAO2_2_2"/>
+                    <xs:enumeration value="MANDATO_SINDICAL_VERSAO2_2_2"/>
+                    <xs:enumeration value="MULHER_VITIMA_VIOLENCIA_VERSAO2_2_2"/>
+                    <xs:enumeration value="PARTICIPACAO_EMPREGO_CONS_NACIONAL_VERSAO2_2_2"/>
+                    <xs:enumeration value="QUALIFICACAO_VERSAO2_2_2"/>
+                    <xs:enumeration value="REPRESENTANTE_SINDICAL_VERSAO2_2_2"/>
+                    <xs:enumeration value="SERVICO_MILITAR_VERSAO2_2_2"/>
+                    <xs:enumeration value="SUSPENSAO_DISCIPLINAR_VERSAO2_2_2"/>
+                    <xs:enumeration value="SERVIDOR_PUBLICO_VERSAO2_2_2"/>
+                    <xs:enumeration value="TRANSFERENCIA_PRESTACAO_SERVICO_VERSAO2_2_2"/>
+                    <xs:enumeration value="OUTROS_VERSAO2_2_2"/>
+                    <xs:enumeration value="ACIDENTE_TRABALHO_VERSAO2_3"/>
+                    <xs:enumeration value="DOENCA_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_SR_VERSAO2_3"/>
+                    <xs:enumeration value="APOSENTADORIA_INVALIDEZ_VERSAO2_3"/>
+                    <xs:enumeration value="ACOMPANHAMENTO_MEMBRO_FAMILIA_VERSAO2_3"/>
+                    <xs:enumeration value="AFASTAMENTO_ATIVIDADE_CONS_CURA_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_CR_VERSAO2_3"/>
+                    <xs:enumeration value="CARCERE_VERSAO2_3"/>
+                    <xs:enumeration value="CARGO_ELETIVO_VERSAO2_3"/>
+                    <xs:enumeration value="CARGO_ELETIVO_SERVIDOR_PUBLICO_VERSAO2_3"/>
+                    <xs:enumeration value="CESSAO_VERSAO2_3"/>
+                    <xs:enumeration value="FERIAS_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_RENUMERADA_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_120_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_180_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ABORTO_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ADOCAO_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_NAO_RENUMERADA_VERSAO2_3"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SR_VERSAO2_3"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SC_VERSAO2_3"/>
+                    <xs:enumeration value="MANDATO_SINDICAL_VERSAO2_3"/>
+                    <xs:enumeration value="MULHER_VITIMA_VIOLENCIA_VERSAO2_3"/>
+                    <xs:enumeration value="PARTICIPACAO_EMPREGO_CONS_NACIONAL_VERSAO2_3"/>
+                    <xs:enumeration value="QUALIFICACAO_VERSAO2_3"/>
+                    <xs:enumeration value="REPRESENTANTE_SINDICAL_VERSAO2_3"/>
+                    <xs:enumeration value="SERVICO_MILITAR_VERSAO2_3"/>
+                    <xs:enumeration value="SUSPENSAO_DISCIPLINAR_VERSAO2_3"/>
+                    <xs:enumeration value="SERVIDOR_PUBLICO_VERSAO2_3"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_SOMENTE_180_DIAS_VERSAO2_3"/>
+                    <xs:enumeration value="INVATIVIDADE_TRABALHADOR_AVULSO_VERSAO2_3"/>
+                    <xs:enumeration value="OUTROS_VERSAO2_3"/>
+                    <xs:enumeration value="ACIDENTE_TRABALHO_VERSAO2_4"/>
+                    <xs:enumeration value="DOENCA_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_SR_VERSAO2_4"/>
+                    <xs:enumeration value="APOSENTADORIA_INVALIDEZ_VERSAO2_4"/>
+                    <xs:enumeration value="ACOMPANHAMENTO_MEMBRO_FAMILIA_VERSAO2_4"/>
+                    <xs:enumeration value="AFASTAMENTO_ATIVIDADE_CONS_CURA_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_PREVISTAS_REGIME_PROPRIO_CR_VERSAO2_4"/>
+                    <xs:enumeration value="CARCERE_VERSAO2_4"/>
+                    <xs:enumeration value="CARGO_ELETIVO_VERSAO2_4"/>
+                    <xs:enumeration value="CARGO_ELETIVO_SERVIDOR_PUBLICO_VERSAO2_4"/>
+                    <xs:enumeration value="CESSAO_VERSAO2_4"/>
+                    <xs:enumeration value="FERIAS_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_RENUMERADA_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_120_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_180_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ABORTO_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_ADOCAO_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_TEMPORARIO_CONJUGE_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_NAO_RENUMERADA_VERSAO2_4"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SR_VERSAO2_4"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_VERSAO2_4"/>
+                    <xs:enumeration value="MANDATO_ELEITORAL_SC_VERSAO2_4"/>
+                    <xs:enumeration value="MANDATO_SINDICAL_VERSAO2_4"/>
+                    <xs:enumeration value="MULHER_VITIMA_VIOLENCIA_VERSAO2_4"/>
+                    <xs:enumeration value="PARTICIPACAO_EMPREGO_CONS_NACIONAL_VERSAO2_4"/>
+                    <xs:enumeration value="QUALIFICACAO_VERSAO2_4"/>
+                    <xs:enumeration value="REPRESENTANTE_SINDICAL_VERSAO2_4"/>
+                    <xs:enumeration value="SERVICO_MILITAR_VERSAO2_4"/>
+                    <xs:enumeration value="SUSPENSAO_DISCIPLINAR_VERSAO2_4"/>
+                    <xs:enumeration value="SERVIDOR_PUBLICO_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_SOMENTE_180_DIAS_VERSAO2_4"/>
+                    <xs:enumeration value="INVATIVIDADE_TRABALHADOR_AVULSO_VERSAO2_4"/>
+                    <xs:enumeration value="LICENCA_MATERNIDADE_ANTECIPACAO_PRORROGACAO_VERSAO2_4"/>
+                    <xs:enumeration value="AFASTAMENTO_TEMPORARIO_CARGO_COMISSAO_VERSAO2_4"/>
+                    <xs:enumeration value="SUSPENSAO_TEMPORARIA_CONTRATO_TRABALHO"/>
+                    <xs:enumeration value="IMPEDIMENTO_CONCORRENCIA_ESCALA_TRABALHO_AVULSO"/>
+                    <xs:enumeration value="SUSPENSAO_PAGAMENTO_SERVIDOR_PUBLICO"/>
+                    <xs:enumeration value="EXERCICIO_OUTRO_ORGAO_PUBLICO"/>
+                    <xs:enumeration value="OUTROS_VERSAO2_4"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="onusExercicioMandatoSindical">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="EMPREGADOR"/>
+                    <xs:enumeration value="SINDICATO"/>
+                    <xs:enumeration value="DIFERENCA_SALARIAL"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="onusCessaoTrabalhador">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CEDENTE"/>
+                    <xs:enumeration value="CESSIONARIO"/>
+                    <xs:enumeration value="CEDENTE_CESSIONARIO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="motivoAlteracaoMotivoLicenca">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="RETIFICACAO_CADASTRO"/>
+                    <xs:enumeration value="ALTERACAO_MOTIVO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="identificacaoRemuneracaoCargo">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="SIM"/>
+                    <xs:enumeration value="NAO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="buscaTipoLicenca">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CODIGO_SOC"/>
+                    <xs:enumeration value="CODIGO_INTEGRACAO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="buscaMotivoLicenca">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CODIGO_SOC"/>
+                    <xs:enumeration value="CODIGO_INTEGRACAO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="tipoDataAlteracao">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="NAO_GERAR"/>
+                    <xs:enumeration value="SOMENTE_INFO_INICIO_AFASTAMENTO"/>
+                    <xs:enumeration value="SOMENTE_INFO_FIM_AFASTAMENTO"/>
+                    <xs:enumeration value="INFORMACOES_INICIO_E_FIM_AFASTAMENTO"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="WSException" type="tns:WSException"/>
+            <xs:complexType name="WSException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="VoInvalidoException" type="tns:VoInvalidoException"/>
+            <xs:complexType name="VoInvalidoException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="consultarMovimentacoesLicencasMedicasResponse">
+        <wsdl:part element="tns:consultarMovimentacoesLicencasMedicasResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="consultarMovimentacoesLicencasMedicas">
+        <wsdl:part element="tns:consultarMovimentacoesLicencasMedicas" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="alterarLicencaMedica">
+        <wsdl:part element="tns:alterarLicencaMedica" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="consultarLoteLicencasMedicas">
+        <wsdl:part element="tns:consultarLoteLicencasMedicas" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="consultarLicencaMedica">
+        <wsdl:part element="tns:consultarLicencaMedica" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="WSException">
+        <wsdl:part element="tns:WSException" name="WSException"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="consultarLoteLicencasMedicasResponse">
+        <wsdl:part element="tns:consultarLoteLicencasMedicasResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="incluirLicencaMedica">
+        <wsdl:part element="tns:incluirLicencaMedica" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="alterarLicencaMedicaResponse">
+        <wsdl:part element="tns:alterarLicencaMedicaResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="excluirLicencaMedicaResponse">
+        <wsdl:part element="tns:excluirLicencaMedicaResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="VoInvalidoException">
+        <wsdl:part element="tns:VoInvalidoException" name="VoInvalidoException"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="incluirLicencaMedicaResponse">
+        <wsdl:part element="tns:incluirLicencaMedicaResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="consultarLicencaMedicaResponse">
+        <wsdl:part element="tns:consultarLicencaMedicaResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="excluirLicencaMedica">
+        <wsdl:part element="tns:excluirLicencaMedica" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="LicencaMedicaWs">
+        <wsdl:operation name="consultarMovimentacoesLicencasMedicas">
+            <wsdl:input message="tns:consultarMovimentacoesLicencasMedicas" name="consultarMovimentacoesLicencasMedicas"></wsdl:input>
+            <wsdl:output message="tns:consultarMovimentacoesLicencasMedicasResponse" name="consultarMovimentacoesLicencasMedicasResponse"></wsdl:output>
+            <wsdl:fault message="tns:VoInvalidoException" name="VoInvalidoException"></wsdl:fault>
+            <wsdl:fault message="tns:WSException" name="WSException"></wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="alterarLicencaMedica">
+            <wsdl:input message="tns:alterarLicencaMedica" name="alterarLicencaMedica"></wsdl:input>
+            <wsdl:output message="tns:alterarLicencaMedicaResponse" name="alterarLicencaMedicaResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="consultarLoteLicencasMedicas">
+            <wsdl:input message="tns:consultarLoteLicencasMedicas" name="consultarLoteLicencasMedicas"></wsdl:input>
+            <wsdl:output message="tns:consultarLoteLicencasMedicasResponse" name="consultarLoteLicencasMedicasResponse"></wsdl:output>
+            <wsdl:fault message="tns:VoInvalidoException" name="VoInvalidoException"></wsdl:fault>
+            <wsdl:fault message="tns:WSException" name="WSException"></wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="consultarLicencaMedica">
+            <wsdl:input message="tns:consultarLicencaMedica" name="consultarLicencaMedica"></wsdl:input>
+            <wsdl:output message="tns:consultarLicencaMedicaResponse" name="consultarLicencaMedicaResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="excluirLicencaMedica">
+            <wsdl:input message="tns:excluirLicencaMedica" name="excluirLicencaMedica"></wsdl:input>
+            <wsdl:output message="tns:excluirLicencaMedicaResponse" name="excluirLicencaMedicaResponse"></wsdl:output>
+            <wsdl:fault message="tns:VoInvalidoException" name="VoInvalidoException"></wsdl:fault>
+            <wsdl:fault message="tns:WSException" name="WSException"></wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="incluirLicencaMedica">
+            <wsdl:input message="tns:incluirLicencaMedica" name="incluirLicencaMedica"></wsdl:input>
+            <wsdl:output message="tns:incluirLicencaMedicaResponse" name="incluirLicencaMedicaResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LicencaMedicaWsServiceSoapBinding" type="tns:LicencaMedicaWs">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="consultarMovimentacoesLicencasMedicas">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="consultarMovimentacoesLicencasMedicas">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="consultarMovimentacoesLicencasMedicasResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="VoInvalidoException">
+                <soap:fault name="VoInvalidoException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="WSException">
+                <soap:fault name="WSException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="alterarLicencaMedica">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="alterarLicencaMedica">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="alterarLicencaMedicaResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="consultarLoteLicencasMedicas">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="consultarLoteLicencasMedicas">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="consultarLoteLicencasMedicasResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="VoInvalidoException">
+                <soap:fault name="VoInvalidoException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="WSException">
+                <soap:fault name="WSException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="consultarLicencaMedica">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="consultarLicencaMedica">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="consultarLicencaMedicaResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="excluirLicencaMedica">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="excluirLicencaMedica">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="excluirLicencaMedicaResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="VoInvalidoException">
+                <soap:fault name="VoInvalidoException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="WSException">
+                <soap:fault name="WSException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="incluirLicencaMedica">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="incluirLicencaMedica">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="incluirLicencaMedicaResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LicencaMedicaWsService">
+        <wsdl:port binding="tns:LicencaMedicaWsServiceSoapBinding" name="LicencaMedicaWsPort">
+            <soap:address location="https://www.p-soc.com.br/WSSoc/services/LicencaMedicaWs"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
