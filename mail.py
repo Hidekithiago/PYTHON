@@ -1,51 +1,62 @@
+from email import encoders
+from email.mime.base import MIMEBase
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from pathlib import Path
+from email.mime.application import MIMEApplication
+from email.mime.image import MIMEImage
 
-def sendMail(data, nome, unidade):
-    msg = MIMEText("<h3><strong>Prezado Gerente/Responsavel,</strong></h3>" +
-"Informamos que recebemos no dia " + data + " o atestado médico do funcionário " + nome + " da Unidade de Trabalho " + unidade + 
-". De acordo com os dias apresentados, será necessário avaliação da área Gestão de Afastados para possível afastamento. <br><br>FAVOR ABRIR MAESTRO EM GESTÃO INTEGRADA DE ATESTADOS MÉDICOS / AFASTAMENTOS.", 'html')
-    
+def sendMail():
+    msg = MIMEText("<h3><strong>Prezado Gerente/Responsavel,</strong></h3>", 'html')
+    mail.sendmail(emailFrom, destinations, msg.as_string())
+    mail.quit()
+
+def sendMailAttachment():
+    msg = MIMEMultipart()
+    files = str(Path.home())+r"\Downloads\a"    
+    print(files)
+
+    msgText  = MIMEText("<h3><strong>Prezado Gerente/Responsavel,</strong></h3>", 'html')
+    msg.attach(msgText)    
+    emailFrom = 'noreplyquaestum@gmail.com'
+    passFrom = 'lttjxgyrbpuouxia'
+    servidorSmtp = 'smtp.gmail.com'
+    portSmtp = '587'
     msg['Subject'] = 'TESTE'
-    msg['From'] = "no-reply@manserv.com.br"
-    msg['To'] = 'fernando.burgos@quaestum.com.br'
-
-    mail = smtplib.SMTP('smtp.manserv.com.br', 587)
+    msg['From'] = emailFrom
+    msg['To'] = ''
+    print('Config OK')
+    mail = smtplib.SMTP(servidorSmtp, portSmtp)
+    print('1')
     mail.starttls()
-    mail.login('no-reply@manserv.com.br', 'rs6G@KwTdc878@E!')
-    
+    print('2')
+    mail.login(emailFrom, passFrom)
+    print('3')
     destinations = [
-        "quaestumteste@gmail.com"
-        # "afastados@manserv.com.br",
-        # "ssma.saude@manserv.com.br"
+        "a@gmail.com"
+        ,"b@gmail.com"
+        ,"c@gmail.com"
     ]
-    
-    mail.sendmail("no-reply@manserv.com.br", destinations, msg.as_string())
-    mail.quit()    
-    
+    #Set up crap for the attachments
+    print('SMTP OK')
+    filenames = [os.path.join(files, f) for f in os.listdir(files)]
 
-'''EMAILS
-envioEmail = "no-reply@manserv.com.br";
-mailMessage.To.Add("quaestumteste@gmail.com");
-mailMessage.To.Add("afastados@manserv.com.br");
-mailMessage.To.Add("ssma.saude@manserv.com.br");
+    for file in filenames:
+        print(file)
+        #with open('example.jpg', 'rb') as fp:
+        #    img = MIMEImage(fp.read())
+        #    img.add_header('Content-Disposition', 'attachment', filename="example.jpg")
+        #   msg.attach(img)
 
-'''
+        pdf = MIMEApplication(open(file, 'rb').read())
+        pdf.add_header('Content-Disposition', 'attachment', filename= "example.pdf")
+        msg.attach(pdf)
 
-'''Corpo do Email
-
-mailMessage.Body = "<h3><strong>Prezado Gerente/Responsavel,</strong></h3>" +
-"Informamos que recebemos no dia " + dataInsert + " o atestado médico do funcionário " + nomePaciente + " da Unidade de Trabalho " + descricaoUt + ". De acordo com os dias apresentados, será necessário avaliação da área Gestão de Afastados para possível afastamento. <br><br>FAVOR ABRIR MAESTRO EM GESTÃO INTEGRADA DE ATESTADOS MÉDICOS / AFASTAMENTOS.";
-
-'''
+    mail.sendmail(emailFrom, destinations, msg.as_string())
+    mail.quit()
 
 
-
-'''Credenciais
-smtp.Host = "smtp.manserv.com.br";
-smtp.Port = 587;
-smtp.EnableSsl = false;
-smtp.Credentials = new NetworkCredential(envioEmail, "@cE1@@Z;");
-smtp.Send(mailMessage);
-'''
+if __name__ == "__main__":
+    sendMailAttachment()
